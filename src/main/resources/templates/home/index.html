@@ -16,8 +16,8 @@
       <div class="row h-100 align-items-center">
         <div class="col-12">
           <div class="hero-content">
-            <h2>New Product</h2>
-            <a href="#" class="btn essence-btn">view Product</a>
+            <h2>Best Selling Product</h2>
+            <a th:href="@{/product/productDetail/{id}(id=${top1Product.idProduct})}" class="btn essence-btn">view Product</a>
           </div>
         </div>
       </div>
@@ -65,7 +65,7 @@
       <div class="row">
         <div class="col-12">
           <div class="section-heading text-center">
-            <h2>Popular Products</h2>
+            <h2>Top 10 Products</h2>
           </div>
         </div>
       </div>
@@ -77,29 +77,29 @@
           <div class="popular-products-slides owl-carousel">
 
             <!-- Single Product -->
-            <div class="single-product-wrapper">
+            <div th:each="product : ${listProducts}" class="single-product-wrapper">
               <!-- Product Image -->
               <div class="product-img">
-                <img src="img/product-img/product-3.jpg" alt="">
+                <img th:src="${product.imgProduct}" alt="">
                 <!-- Hover Thumb -->
-                <img class="hover-img" src="img/product-img/product-4.jpg" alt="">
+                <img class="hover-img" th:src="${product.imgCoverProduct}" alt="">
 
                 <!-- Product Badge -->
                 <div class="product-badge">
-                  <span>-30%</span>
+                  <span th:text="${product.viewProduct + ' view'}"></span>
                 </div>
 
                 <!-- Favourite -->
                 <div class="product-favourite">
-                  <a href="#" class="favme fa fa-search"></a>
+                  <a th:href="@{/product/productDetail/{id}(id=${product.idProduct})}" class="favme fa fa-search"></a>
                 </div>
               </div>
               <!-- Product Description -->
               <div class="product-description">
-                <a href="../product/detail.html">
-                  <h6>PETITE Crepe Wrap Mini Dress</h6>
+                <a th:href="@{/product/productDetail/{id}(id=${product.idProduct})}">
+                  <h6 class="text-center" th:text="${product.nameProduct}"></h6>
                 </a>
-                <p class="product-price"><span class="old-price">$75.00</span> $55.00</p>
+                <p class="text-center product-price" th:text="${product.priceProduct + '$'}"></p>
 
                 <!-- Hover Content -->
                 <div class="hover-content">

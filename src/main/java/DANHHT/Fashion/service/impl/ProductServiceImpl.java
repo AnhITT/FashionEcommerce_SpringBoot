@@ -52,4 +52,14 @@ public class ProductServiceImpl implements ProductService {
             productRepository.save(productEntity);
         }
     }
+
+    @Override
+    public List<Product> top10Product() {
+        return productRepository.top10Products();
+    }
+
+    @Override
+    public Product top1Product() {
+        return productRepository.top1Products();
+    }
 }

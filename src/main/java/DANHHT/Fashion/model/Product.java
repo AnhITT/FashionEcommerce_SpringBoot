@@ -3,6 +3,9 @@ package DANHHT.Fashion.model;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.List;
+import java.util.Set;
+
 @Setter
 @Getter
 @NoArgsConstructor
@@ -31,4 +34,7 @@ public class Product {
     @ManyToOne
     @JoinColumn(name = "category_id")
     private Category category;
+
+    @OneToMany(mappedBy = "product")
+    private Set<ProductSize> productSizes;
 }

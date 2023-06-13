@@ -13,4 +13,7 @@ public interface ProductService {
     List<Product> searchProduct(String keyword);
     Optional<Product> getProductById(Long id);
     void UpdateView(Long id);
+    List<Product> top10Product();
+    Product top1Product();
+
 }

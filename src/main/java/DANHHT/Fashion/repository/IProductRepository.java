@@ -11,6 +11,11 @@ import java.util.Optional;
 
 @Repository
 public interface IProductRepository extends JpaRepository<Product, Long> {
+
+    @Query("SELECT p FROM Product p ORDER BY p.viewProduct DESC LIMIT 1")
+    Product top1Products();
+    @Query("SELECT p FROM Product p ORDER BY p.viewProduct DESC LIMIT 10")
+    List<Product> top10Products();
     @Query("SELECT p FROM Product  p WHERE p.category.id = :id")
     List<Product> findByCategoryId(Long id);
 
