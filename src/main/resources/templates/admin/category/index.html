@@ -15,7 +15,7 @@
         <div class="">
             <div class="page-title">
                 <div class="title_left">
-                    <h3>Category</h3>
+                    <a type="button" th:href="@{/category/addcategory}" class="btn btn-round btn-primary">Add Category</a>
                 </div>
 
                 <div class="title_right">
@@ -36,7 +36,7 @@
                 <div class="col-md-6">
                     <div class="x_panel">
                         <div class="x_title">
-                            <h2>Projects</h2>
+                            <h2>Category</h2>
                             <ul class="nav navbar-right panel_toolbox">
                                 <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                                 </li>
@@ -53,11 +53,8 @@
                             <div class="clearfix"></div>
                         </div>
                         <div class="x_content">
-
-                            <a type="button" th:href="@{/category/addcategory}" class="btn btn-round btn-primary">Add Category</a>
-
                             <!-- start project list -->
-                            <table class="table table-striped projects">
+                            <table class="table table-hover">
                                 <thead>
                                 <tr>
                                     <th style="width: 10%">CategoryID</th>
@@ -68,8 +65,8 @@
                                 <tbody>
 
                               <tr th:each="category : ${listcategory}">
-                                    <td th:text=${category.id}></td>
-                                    <td th:text=${category.name}></td>
+                                    <td th:text="${category.id}"></td>
+                                    <td th:text="${category.name}"></td>
                                     <td>
                                         <a th:href="@{category/editcategory/{id}(id=${category.id})}"  class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Edit </a>
                                         <a th:href="@{category/deletecategory/{id}(id=${category.id})}" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete </a>

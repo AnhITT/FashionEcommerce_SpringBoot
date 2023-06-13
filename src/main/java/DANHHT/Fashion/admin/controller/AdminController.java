@@ -15,10 +15,7 @@ public class AdminController {
     public String Admin(){
         return "admin/home/index";
     }
-    @GetMapping("/product")
-    public String Product(){
-        return "admin/home/product";
-    }
+
     @GetMapping("/test")
     public String Test(){
         return "admin/home/test";
@@ -27,9 +24,6 @@ public class AdminController {
     public String Login(){
         return "admin/login/login";
     }
-    @GetMapping("/addproduct")
-    public String Add(){
-        return "admin/home/addproduct";
-    }
+
 
 }
