@@ -25,6 +25,8 @@ public class Product {
     private String imgCoverProduct;
     @Column(name = "description", length = 10000)
     private String desProduct;
+    @Column(name = "view")
+    private int viewProduct;
 
     @ManyToOne
     @JoinColumn(name = "category_id")

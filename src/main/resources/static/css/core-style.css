@@ -1750,5 +1750,41 @@ img {
             color: #0315ff; }
 
 /* ##### The End ##### */
+.user-login-info {
+  position: relative;
+  display: inline-block;
+}
 
+.user-menu {
+  position: absolute;
+  top: 100%;
+  right: -15px;
+  background-color: #ffffff;
+  border: 1px solid #ddd;
+  padding: 10px;
+  min-width: 120px;
+  z-index: 1;
+  display: none;
+}
+
+.user-menu ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.user-menu ul li {
+  padding: 5px 0;
+}
+
+.user-menu ul li a {
+  text-decoration: none !important;
+  color: #333;
+  border-left: none !important;
+}
+
+.user-icon:hover+.user-menu,
+.user-menu:hover {
+  display: block;
+}
 /*# sourceMappingURL=core-style.css.map */

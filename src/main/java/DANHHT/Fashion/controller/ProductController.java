@@ -1,6 +1,8 @@
 package DANHHT.Fashion.controller;
 
+import DANHHT.Fashion.model.Category;
 import DANHHT.Fashion.model.Product;
+import DANHHT.Fashion.service.CategoryService;
 import DANHHT.Fashion.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -11,13 +13,18 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/product")
 public class ProductController {
     @Autowired
     private ProductService productService;
+
+    @Autowired
+    private CategoryService categoryService;
     @GetMapping("")
     public String Shop(Model model)
     {
@@ -36,5 +43,77 @@ public class ProductController {
         model.addAttribute("listProducts", listProducts);
         return "home/shop";
     }
+    @GetMapping("/category/{name}")
+    public String listProductByCategory(@PathVariable("name") String name, Model model){
+        if(name.equals("tops"))
+        {
+            List<Product> list = new ArrayList<>();
+            List<Category> categoryList = new ArrayList<>();
+            String[] categoryNames = {"T-Shirt", "Polo", "Sweater", "Blazer", "Jacket"};
+            for (String temp : categoryNames) {
+                Optional<Category> category = categoryService.getCategoryByName(temp);
+                if (category.isPresent()) {
+                    categoryList.add(category.get());
+                    List<Product> productList = productService.getProductByCategory(category.get().getId());
+                    list.addAll(productList);
+                }
+            }
+            model.addAttribute("listProducts", list);
+            return "home/productCategory";
+        }
+        else if(name.equals("bottoms"))
+        {
+            List<Product> list = new ArrayList<>();
+            List<Category> categoryList = new ArrayList<>();
+            String[] categoryNames = {"Jeans", "Trousers", "Underpants", "Pants", "Tights"};
+            for (String temp : categoryNames) {
+                Optional<Category> category = categoryService.getCategoryByName(temp);
+                if (category.isPresent()) {
+                    categoryList.add(category.get());
+                    List<Product> productList = productService.getProductByCategory(category.get().getId());
+                    list.addAll(productList);
+                }
+            }
+            model.addAttribute("listProducts", list);
+            return "home/productCategory";
+        }
+        else if(name.equals("accessories"))
+        {
+            List<Product> list = new ArrayList<>();
+            List<Category> categoryList = new ArrayList<>();
+            String[] categoryNames = {"Baseball cap", "Shoes", "Sandal", "Bag", "Glasses"};
+            for (String temp : categoryNames) {
+                Optional<Category> category = categoryService.getCategoryByName(temp);
+                if (category.isPresent()) {
+                    categoryList.add(category.get());
+                    List<Product> productList = productService.getProductByCategory(category.get().getId());
+                    list.addAll(productList);
+                }
+            }
+            model.addAttribute("listProducts", list);
+            return "home/productCategory";
+        }
+        else
+        {
+            Optional<Category> category = categoryService.getCategoryByName(name);
+            List<Product> productList = productService.getProductByCategory(category.get().getId());
+            model.addAttribute("listProducts", productList);
+            return "home/productCategory";
+        }
+    }
 
+    @GetMapping("/search")
+    public String searchBook( Model model, @RequestParam String name)
+    {
+        model.addAttribute("listProducts", productService.searchProduct(name));
+        return "home/productCategory";
+    }
+
+    @GetMapping("productDetail/{id}")
+    public String productDetail(@PathVariable("id") Long id, Model model){
+        var product = productService.getProductById(id);
+        model.addAttribute("productItem", product.orElseThrow(() -> new IllegalArgumentException("Product not found")));
+        productService.UpdateView(id);
+        return "product/detail";
+    }
 }

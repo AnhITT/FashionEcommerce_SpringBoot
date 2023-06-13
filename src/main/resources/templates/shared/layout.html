@@ -1,17 +1,12 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head>
     <meta charset="UTF-8">
     <title>ESSENCE</title>
     <link th:href="@{/css/core-style.css}" rel="stylesheet" />
-    <script type="text/javascript" th:src="@{/js/jquery/jquery-2.2.4.min.js}"></script>
-    <script type="text/javascript" th:src="@{/js/popper.min.js}"></script>
-    <script type="text/javascript" th:src="@{/js/bootstrap.min.js}"></script>
-    <script type="text/javascript" th:src="@{/js/plugins.js}"></script>
-    <script type="text/javascript" th:src="@{/js/classy-nav.min.js}"></script>
-    <script type="text/javascript" th:src="@{/js/active.js}"></script>
-    <link rel="icon" href="img/core-img/faviconn.ico" />
+    <link rel="icon" href="/img/core-img/faviconn.ico" />
 </head>
 <body>
 <!-- ##### Header Area Start ##### -->
@@ -20,7 +15,7 @@
         <!-- Classy Menu -->
         <nav class="classy-navbar" id="essenceNav">
             <!-- Logo -->
-            <a class="nav-brand" href="/"><img src="img/core-img/logo.png" alt=""></a>
+            <a class="nav-brand" href="/"><img src="/img/core-img/logo.png" alt=""></a>
             <!-- Navbar Toggler -->
             <div class="classy-navbar-toggler">
                 <span class="navbarToggler"><span></span><span></span><span></span></span>
@@ -38,30 +33,30 @@
                             <div class="megamenu">
                                 <ul class="single-mega cn-col-4">
                                     <li class="title">Tops</li>
-                                    <li><a href="shop.html">T-shirts</a></li>
-                                    <li><a href="shop.html">Polo</a></li>
-                                    <li><a href="shop.html">Sweater</a></li>
-                                    <li><a href="shop.html">Blazer</a></li>
-                                    <li><a href="shop.html">Jacket</a></li>
+                                    <li><a th:href="@{/product/category/{name}(name=${'T-Shirt'})}">T-Shirt</a></li>
+                                    <li><a th:href="@{/product/category/{name}(name=${'Polo'})}">Polo</a></li>
+                                    <li><a th:href="@{/product/category/{name}(name=${'Sweater'})}">Sweater</a></li>
+                                    <li><a th:href="@{/product/category/{name}(name=${'Blazer'})}">Blazer</a></li>
+                                    <li><a th:href="@{/product/category/{name}(name=${'Jacket'})}">Jacket</a></li>
                                 </ul>
                                 <ul class="single-mega cn-col-4">
                                     <li class="title">Bottoms</li>
-                                    <li><a href="shop.html">Jeans</a></li>
-                                    <li><a href="shop.html">Trousers </a></li>
-                                    <li><a href="shop.html">Underpants </a></li>
-                                    <li><a href="shop.html">Pants </a></li>
-                                    <li><a href="shop.html">Tights </a></li>
+                                    <li><a th:href="@{/product/category/{name}(name=${'Jeans'})}">Jeans</a></li>
+                                    <li><a th:href="@{/product/category/{name}(name=${'Trousers'})}">Trousers </a></li>
+                                    <li><a th:href="@{/product/category/{name}(name=${'Underpants'})}">Underpants </a></li>
+                                    <li><a th:href="@{/product/category/{name}(name=${'Pants'})}">Pants </a></li>
+                                    <li><a th:href="@{/product/category/{name}(name=${'Tights'})}">Tights </a></li>
                                 </ul>
                                 <ul class="single-mega cn-col-4">
                                     <li class="title">Accessories</li>
-                                    <li><a href="shop.html">Baseball cap</a></li>
-                                    <li><a href="shop.html">Shoes</a></li>
-                                    <li><a href="shop.html">Sandal</a></li>
-                                    <li><a href="shop.html">Bag</a></li>
-                                    <li><a href="shop.html">Glasses</a></li>
+                                    <li><a th:href="@{/product/category/{name}(name=${'Baseball cap'})}">Baseball cap</a></li>
+                                    <li><a th:href="@{/product/category/{name}(name=${'Shoes'})}">Shoes</a></li>
+                                    <li><a th:href="@{/product/category/{name}(name=${'Sandal'})}">Sandal</a></li>
+                                    <li><a th:href="@{/product/category/{name}(name=${'Bag'})}">Bag</a></li>
+                                    <li><a th:href="@{/product/category/{name}(name=${'Glasses'})}">Glasses</a></li>
                                 </ul>
                                 <div class="single-mega cn-col-4">
-                                    <img src="img/bg-img/bg-6.jpg" alt="">
+                                    <img src="/img/bg-img/bg-6.jpg" alt="">
                                 </div>
                             </div>
                         </li>
@@ -78,22 +73,32 @@
         <div class="header-meta d-flex clearfix justify-content-end">
             <!-- Search Area -->
             <div class="search-area">
-                <form action="#" method="post">
-                    <input type="search" name="search" id="headerSearch" placeholder="Type for search">
+                <form th:action="@{/product/search}" method="get">
+                    <input type="search" name="name" id="headerSearch" placeholder="Type for search">
                     <button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
                 </form>
             </div>
-            <!-- Favourite Area -->
-            <div class="favourite-area">
-                <a href="#"><img src="img/core-img/heart.svg" alt=""></a>
+                <div sec:authorize="isAuthenticated()" class="user-login-info">
+                    <a href="#" class="user-icon"><img src="img/core-img/user.svg" alt=""></a>
+                    <div class="user-menu">
+                        <ul>
+                            <li><a href="#">Setting</a></li>
+                            <li>
+                                <form th:action="@{/logout}" method="post">
+                                    <button type="submit" style="border: none; background: none; padding: 0; margin: 0; cursor: pointer;">Logout</button>
+                                </form>
+                            </li>
+                        </ul>
+
+                    </div>
+                </div>
+            <div sec:authorize="isAuthenticated()">
+                <div class="cart-area">
+                    <a href="#" id="essenceCartBtn"><img src="/img/core-img/bag.svg" alt=""> <span>3</span></a>
+                </div>
             </div>
-            <!-- User Login Info -->
-            <div class="user-login-info">
-                <a href="#"><img src="img/core-img/user.svg" alt=""></a>
-            </div>
-            <!-- Cart Area -->
-            <div class="cart-area">
-                <a href="#" id="essenceCartBtn"><img src="img/core-img/bag.svg" alt=""> <span>3</span></a>
+            <div sec:authorize="!isAuthenticated()" class="user-login-info">
+                    <a th:href="@{/login}"><img src="/img/core-img/user.svg" alt=""></a>
             </div>
         </div>
 
@@ -108,7 +113,7 @@
 
     <!-- Cart Button -->
     <div class="cart-button">
-        <a href="#" id="rightSideCart"><img src="img/core-img/bag.svg" alt=""> <span>3</span></a>
+        <a href="#" id="rightSideCart"><img src="/img/core-img/bag.svg" alt=""> <span>3</span></a>
     </div>
 
     <div class="cart-content d-flex">
@@ -118,7 +123,7 @@
             <!-- Single Cart Item -->
             <div class="single-cart-item">
                 <a href="#" class="product-image">
-                    <img src="img/product-img/product-1.jpg" class="cart-thumb" alt="">
+                    <img src="/img/product-img/product-1.jpg" class="cart-thumb" alt="">
                     <!-- Cart Item Desc -->
                     <div class="cart-item-desc">
                         <span class="product-remove"><i class="fa fa-close" aria-hidden="true"></i></span>
@@ -134,7 +139,7 @@
             <!-- Single Cart Item -->
             <div class="single-cart-item">
                 <a href="#" class="product-image">
-                    <img src="img/product-img/product-2.jpg" class="cart-thumb" alt="">
+                    <img src="/img/product-img/product-2.jpg" class="cart-thumb" alt="">
                     <!-- Cart Item Desc -->
                     <div class="cart-item-desc">
                         <span class="product-remove"><i class="fa fa-close" aria-hidden="true"></i></span>
@@ -150,7 +155,7 @@
             <!-- Single Cart Item -->
             <div class="single-cart-item">
                 <a href="#" class="product-image">
-                    <img src="img/product-img/product-3.jpg" class="cart-thumb" alt="">
+                    <img src="/img/product-img/product-3.jpg" class="cart-thumb" alt="">
                     <!-- Cart Item Desc -->
                     <div class="cart-item-desc">
                         <span class="product-remove"><i class="fa fa-close" aria-hidden="true"></i></span>
@@ -196,7 +201,7 @@
                 <div class="single_widget_area d-flex mb-30">
                     <!-- Logo -->
                     <div class="footer-logo mr-50">
-                        <a href="#"><img src="img/core-img/logo2.png" alt=""></a>
+                        <a href="#"><img src="/img/core-img/logo2.png" alt=""></a>
                     </div>
                     <!-- Footer Menu -->
                     <div class="footer_menu">
@@ -261,30 +266,18 @@
         <div class="row mt-5">
             <div class="col-md-12 text-center">
                 <p>
-                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                    Copyright &copy;
-                    <script>document.write(new Date().getFullYear());</script> All rights reserved | This template
-                    is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com"
-                                                                                        target="_blank">Colorlib</a>
-                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                    Copyright &copy; 2023
                 </p>
             </div>
         </div>
 
     </div>
 </footer>
-<!-- ##### Footer Area End ##### -->
-<!-- jQuery (Necessary for All JavaScript Plugins) -->
-<script src="js/jquery/jquery-2.2.4.min.js"></script>
-<!-- Popper js -->
-<script src="js/popper.min.js"></script>
-<!-- Bootstrap js -->
-<script src="js/bootstrap.min.js"></script>
-<!-- Plugins js -->
-<script src="js/plugins.js"></script>
-<!-- Classy Nav js -->
-<script src="js/classy-nav.min.js"></script>
-<!-- Active js -->
-<script src="js/active.js"></script>
+<script type="text/javascript" th:src="@{/js/jquery/jquery-2.2.4.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/popper.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/bootstrap.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/plugins.js}"></script>
+<script type="text/javascript" th:src="@{/js/classy-nav.min.js}"></script>
+<script type="text/javascript" th:src="@{/js/active.js}"></script>
 </body>
 </html>
