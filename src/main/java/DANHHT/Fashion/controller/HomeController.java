@@ -11,11 +11,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import java.util.Optional;
 
 @Controller
-@RequestMapping("/")
 public class HomeController {
     @Autowired
     private ProductService productService;
-    @GetMapping
+    @GetMapping("/")
+    public String redirectToHome() {
+        return "redirect:/home";
+    }
+    @GetMapping("home")
     public String Home(Model model){
         model.addAttribute("listProducts", productService.top10Product());
         model.addAttribute("top1Product", productService.top1Product());

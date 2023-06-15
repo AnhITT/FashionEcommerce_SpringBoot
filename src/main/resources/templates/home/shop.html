@@ -5,12 +5,11 @@
 <head>
   <meta charset="UTF-8">
   <title>List Product</title>
-
 </head>
 <body>
 <div layout:fragment="content">
   <!-- ##### Breadcumb Area Start ##### -->
-  <div class="breadcumb_area bg-img" style="background-image: url(img/bg-img/breadcumb.jpg);">
+  <div class="breadcumb_area bg-img" style="background-image: url(/img/bg-img/breadcumb.jpg);">
     <div class="container h-100">
       <div class="row h-100 align-items-center">
         <div class="col-12">
@@ -165,7 +164,9 @@
                     <div class="hover-content">
                       <!-- Add to Cart -->
                       <div class="add-to-cart-btn">
-                        <a href="#" class="btn essence-btn">Add to Cart</a>
+                        <a onclick="return confirm('Are you sure you want to add this product to cart?')"
+                           th:href="@{/cart/add/{id}/{returnUrl}(id=${product.idProduct}, returnUrl='product')}"
+                           class="btn essence-btn">Add to Cart</a>
                       </div>
                     </div>
                   </div>

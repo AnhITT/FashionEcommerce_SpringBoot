@@ -41,7 +41,18 @@ public class ProductServiceImpl implements ProductService {
     public Optional<Product> getProductById(Long id) {
         return productRepository.findById(id);
     }
-
+    @Override
+    public Product GetProductById(Long id) {
+        Optional<Product> optional = productRepository.findById(id);
+        Product product = null;
+        if(optional.isPresent()){
+            product = optional.get();
+        }
+        else {
+            throw new RuntimeException("Product not found for id :" + id);
+        }
+        return product;
+    }
     @Override
     public void UpdateView(Long id) {
         var product = productRepository.findById(id);

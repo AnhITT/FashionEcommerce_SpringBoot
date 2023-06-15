@@ -1,6 +1,7 @@
 package DANHHT.Fashion.config;
 
 import DANHHT.Fashion.service.impl.CustomUserDetailService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -13,7 +14,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 @Configuration
 @EnableWebSecurity
-@EnableMethodSecurity
+@EnableMethodSecurity(securedEnabled = true, jsr250Enabled = true)
+@RequiredArgsConstructor
 public class SecurityConfig {
     @Bean
     public UserDetailsService userDetailsService() {
@@ -60,6 +62,9 @@ public class SecurityConfig {
                         .tokenValiditySeconds(86400)
                         .userDetailsService(userDetailsService())
                 )
+                .sessionManagement(sessionManagement -> sessionManagement
+                        .maximumSessions(1)
+                        .expiredUrl("/login"))
                 .exceptionHandling(exceptionHandling ->
                         exceptionHandling.accessDeniedPage("/403"))
                 .build();

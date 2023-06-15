@@ -4,10 +4,14 @@ import DANHHT.Fashion.dto.CartDto;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.constraints.NotNull;
 
+import java.util.Collection;
+
 public interface CartService {
-    CartDto getCart(@NotNull HttpSession session);
-    void updateCart(@NotNull HttpSession session, CartDto cart);
-    void removeCart(@NotNull HttpSession session);
-    int getSumQuantity(@NotNull HttpSession session);
-    double getSumPrice(@NotNull HttpSession session);
+    void Add(CartDto newItem);
+    void Remove(Long id);
+    CartDto Update(Long productId, int quantity);
+    void Clear();
+    double GetAmount();
+    int GetCount();
+    Collection<CartDto> GetAllItem();
 }
