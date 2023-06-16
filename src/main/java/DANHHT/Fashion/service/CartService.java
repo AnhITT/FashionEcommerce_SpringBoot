@@ -14,4 +14,5 @@ public interface CartService {
     double GetAmount();
     int GetCount();
     Collection<CartDto> GetAllItem();
+    public void checkOut();
 }

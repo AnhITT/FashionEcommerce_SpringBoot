@@ -54,4 +54,9 @@ public class CartServiceImpl implements CartService {
     public Collection<CartDto> GetAllItem() {
         return shoppingCart.values();
     }
+
+    @Override
+    public void checkOut() {
+
+    }
 }

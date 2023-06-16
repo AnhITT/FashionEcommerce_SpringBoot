@@ -62,18 +62,20 @@
             </tbody>
         </table>
         <div class="col-md-12 text-center">
-            <a th:href="@{/cart/clear}" class="essence-btn m-2"><i class="fa fa-money"></i> Checkout</a>
+            <a th:href="@{/checkout}" class="essence-btn m-2"><i class="fa fa-money"></i> Checkout</a>
             <a th:href="@{/cart/clear}"
                     class=" essence-btn m-2"> <i class="fa fa-trash"></i> Clear Cart</a>
         </div>
     </div>
-    <div class="container" th:if="${#lists.isEmpty(all_items_in_shoppingcart)}">
+    <div class="container mb-15 " th:if="${#lists.isEmpty(all_items_in_shoppingcart)}">
         <div class="container">
             <div class="row">
                 <div class="col-md-6 offset-md-3 text-center">
                     <h3 class="mt-5">Your cart is empty</h3>
                     <p class="lead">Please add some product to your cart</p>
-                    <a class="btn btn-outline-dark mb-4" href="/product">Go to list product</a>
+                    <div class="add-to-cart-btn">
+                        <a class="btn essence-btn" href="/product">Go to list product</a>
+                    </div>
                 </div>
             </div>
         </div>

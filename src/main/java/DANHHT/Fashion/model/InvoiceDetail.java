@@ -13,16 +13,16 @@ import lombok.*;
 public class InvoiceDetail {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
-    @Column(name = "name")
-    private String nameProduct;
-    @Column(name = "address")
-    private double priceProduct;
-    @Column(name = "phone")
-    private int quantityProduct;
+    private Long id;
+    @Column(name = "quantity")
+    private int quantity;
     @Column(name = "total")
     private double totalPrice;
     @ManyToOne
     @JoinColumn(name = "invoice_id")
     private Invoice invoice;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "product_id")
+    private Product product;
 }

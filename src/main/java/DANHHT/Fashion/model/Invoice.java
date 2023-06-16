@@ -3,6 +3,7 @@ package DANHHT.Fashion.model;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.Date;
 import java.util.List;
 
 @Data
@@ -15,15 +16,25 @@ import java.util.List;
 public class Invoice {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
     @Column(name = "name")
     private String nameUser;
+    @Column(name = "email")
+    private String emailUser;
+    @Column(name = "date")
+    private Date invoiceDate = new Date();
     @Column(name = "address")
     private String addressUser;
     @Column(name = "phone")
     private String phoneUser;
     @Column(name = "total")
     private double totalInvoice;
+    @Column(name = "note")
+    private String note;
+    @Column(name = "typePayment")
+    private String typePayment;
+    @Column(name = "typeShipping")
+    private String typeShipping;
     @Column(name = "status")
     private String status;
     @ManyToOne

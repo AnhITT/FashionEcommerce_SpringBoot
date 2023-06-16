@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{shared/layout}">
+<head>
+  <meta charset="UTF-8">
+  <title>Manage Info</title>
+
+</head>
+<body>
+<div layout:fragment="content">
+  <div class="breadcumb_area bg-img" style="background-image: url(/img/bg-img/breadcumb.jpg);">
+    <div class="container h-100">
+      <div class="row h-100 align-items-center">
+        <div class="col-12">
+          <div class="page-title text-center">
+            <h2>Manage Info</h2>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-12 col-md-6">
+    <div class=" mt-50 mb-50 clearfix order-details-confirmation">
+
+      <div class="cart-page-heading mb-30">
+        <h5 class="text-center">Manage Profile</h5>
+      </div>
+
+      <form th:action="@{/saveInfo}" th:object="${user}" method="post">
+        <div class="row">
+          <div class="col-12 mb-3">
+            <label>User Name</label>
+            <input type="text" class="form-control" id="username" th:field="*{username}" readonly>
+          </div>
+          <div class="col-12 mb-3">
+            <label>Full Name</label>
+            <input type="text" class="form-control" id="fullName" th:field="*{fullName}">
+          </div>
+          <div class="col-12 mb-3">
+            <label>Email</label>
+            <input type="text" class="form-control" id="email" th:field="*{email}">
+          </div>
+          <div class="col-12 mb-3">
+            <label>Phone Number</label>
+            <input type="text" class="form-control" id="phoneNumber" th:field="*{phoneNumber}">
+          </div>
+          <div class="col-12 mb-3">
+            <label>Address</label>
+            <input type="text" class="form-control" id="address" th:field="*{address}">
+          </div>
+        </div>
+        <button type="submit" class="btn essence-btn">Save</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

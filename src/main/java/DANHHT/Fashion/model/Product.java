@@ -3,6 +3,7 @@ package DANHHT.Fashion.model;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -35,4 +36,6 @@ public class Product {
     @JoinColumn(name = "category_id")
     private Category category;
 
+    @OneToMany(mappedBy = "product", cascade = CascadeType.ALL)
+    private List<InvoiceDetail> itemInvoices = new ArrayList<>();
 }

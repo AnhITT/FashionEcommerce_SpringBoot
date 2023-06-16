@@ -1,13 +1,18 @@
 package DANHHT.Fashion.controller;
 
 import DANHHT.Fashion.dto.CartDto;
+import DANHHT.Fashion.model.Invoice;
 import DANHHT.Fashion.model.Product;
+import DANHHT.Fashion.model.User;
 import DANHHT.Fashion.service.CartService;
 import DANHHT.Fashion.service.ProductService;
+import DANHHT.Fashion.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Date;
 
 @Controller
 @RequestMapping("/cart")
@@ -17,6 +22,8 @@ public class CartController {
 
     @Autowired
     private CartService cartService;
+    @Autowired
+    private UserService userService;
 
     @GetMapping("view")
     public String ViewCart(Model model){
@@ -58,4 +65,5 @@ public class CartController {
         cartService.Update(productId, quantity);
         return "redirect:/cart/view";
     }
+
 }

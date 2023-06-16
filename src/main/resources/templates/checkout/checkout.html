@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{shared/layout}">
+<head>
+    <meta charset="UTF-8">
+    <title>Checkout</title>
+
+</head>
+<body>
+<div layout:fragment="content">
+    <div class="breadcumb_area bg-img" style="background-image: url(/img/bg-img/breadcumb.jpg);">
+        <div class="container h-100">
+            <div class="row h-100 align-items-center">
+                <div class="col-12">
+                    <div class="page-title text-center">
+                        <h2>Checkout</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ##### Breadcumb Area End ##### -->
+
+    <!-- ##### Checkout Area Start ##### -->
+    <div class="checkout_area section-padding-80">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-12 col-md-6">
+                    <div class="checkout_details_area mt-50 clearfix">
+
+                        <div class="cart-page-heading mb-30">
+                            <h5>Billing Address</h5>
+                        </div>
+
+                        <form th:action="@{/checkout/saveInvoice}" th:object="${invoice}" method="post">
+                            <div class="row">
+                                <div class="col-12 mb-3">
+                                    <label>Full Name</label>
+                                    <input type="text" class="form-control" id="nameUser" th:field="*{nameUser}">
+                                </div>
+                                <div class="col-12 mb-3">
+                                    <label>Email</label>
+                                    <input type="text" class="form-control" id="emailUser" th:field="*{emailUser}">
+                                </div>
+                                <div class="col-12 mb-3">
+                                    <label>Phone Number</label>
+                                    <input type="text" class="form-control" id="phoneUser" th:field="*{phoneUser}">
+                                </div>
+                                <div class="col-12 mb-3">
+                                    <label>Address</label>
+                                    <input type="text" class="form-control" id="addressUser" th:field="*{addressUser}">
+                                </div>
+                                <div class="col-12 mb-3">
+                                    <label>Note</label>
+                                    <textarea class="form-control" style="height: 200px;" id="note"
+                                              th:field="*{note}"></textarea>
+                                </div>
+                                <div class="col-12 mb-3">
+                                    <label>Type Deliver</label>
+                                    <select class="w-100" th:field="*{typeShipping}">
+                                        <option value="VietNam Post" th:selected="${typeShipping == 'VietNam Post'}">VietNam Post</option>
+                                        <option value="Viettel Post" th:selected="${typeShipping == 'Viettel Post'}">Viettel Post</option>
+                                        <option value="Kerry Express" th:selected="${typeShipping == 'Kerry Express'}">Kerry Express</option>
+                                    </select>
+                                </div>
+                                <div class="col-12 mb-3">
+                                    <label>Type Payment</label>
+                                    <select class="w-100" th:field="*{typePayment}">
+                                        <option value="COD (Cash On Delivery)"
+                                                th:selected="${typePayment == 'COD (Cash On Delivery)'}">
+                                            COD (Cash On Delivery)</option>
+                                        <option value="Paypal" th:selected="${typePayment == 'Paypal'}">Paypal</option>
+                                    </select>
+                                </div>
+
+                            </div>
+                          <button type="submit" class="btn essence-btn">Place Order</button>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="col-12 col-md-6 col-lg-5 ml-lg-auto">
+                    <div class="order-details-confirmation">
+
+                        <div class="cart-page-heading">
+                            <h5>Your Order</h5>
+                            <p>The Details</p>
+                        </div>
+
+                        <ul class="order-details-form mb-4">
+                            <li><span>ID Order</span> <span>Total</span></li>
+                            <li th:each="cart : ${all_items_in_shoppingcart}">
+                                <span th:text="${cart.productName} +' X '+ ${cart.productQuantity}"></span>
+                                <span th:text="${cart.productPrice} + '$'"></span>
+                            </li>
+                            <li><span>Shipping</span> <span>Free</span></li>
+                            <li><span>Total</span> <span th:text="${total_amount} + '$'"></span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

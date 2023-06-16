@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{shared/layout}">
+<head>
+  <meta charset="UTF-8">
+  <title>Order Detail</title>
+
+</head>
+<body>
+<div layout:fragment="content">
+  <div class="breadcumb_area bg-img" style="background-image: url(/img/bg-img/breadcumb.jpg);">
+    <div class="container h-100">
+      <div class="row h-100 align-items-center">
+        <div class="col-12">
+          <div class="page-title text-center">
+            <h2>Order Detail</h2>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card-body" th:if="${not #lists.isEmpty(invoice)}">
+    <table class="table table-hover">
+      <thead class="thead-dark">
+      <tr class="text-center">
+        <th>ID</th>
+        <th>Name</th>
+        <th>Price</th>
+        <th>Image</th>
+        <th>Quantity</th>
+        <th>Total Price</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr class="text-center" th:each="item, index : ${invoice}">
+        <td th:text="${index.count}"></td>
+        <td th:text="${item.product.nameProduct}"></td>
+        <td th:text="${item.product.priceProduct + '$'}"></td>
+        <td>
+          <img width="100px" height="100px" th:src="${item.product.imgProduct}" alt="">
+        </td>
+        <td th:text="${item.quantity}"></td>
+        <td th:text="${item.totalPrice + '$'}"></td>
+      </tbody>
+    </table>
+  </div>
+  <div class="container mb-15" th:if="${#lists.isEmpty(invoice)}">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 offset-md-3 text-center">
+          <h3 class="mt-5">Your invoice is empty</h3>
+          <div class="add-to-cart-btn">
+            <a class="btn essence-btn" href="/product">Go to list product</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>
