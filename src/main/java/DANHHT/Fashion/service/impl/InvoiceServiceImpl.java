@@ -3,6 +3,7 @@ package DANHHT.Fashion.service.impl;
 import DANHHT.Fashion.dto.CartDto;
 import DANHHT.Fashion.model.Invoice;
 import DANHHT.Fashion.model.InvoiceDetail;
+import DANHHT.Fashion.model.Product;
 import DANHHT.Fashion.model.User;
 import DANHHT.Fashion.repository.*;
 import DANHHT.Fashion.service.InvoiceService;
@@ -14,6 +15,7 @@ import org.springframework.stereotype.Service;
 import java.util.Collection;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class InvoiceServiceImpl implements InvoiceService {
@@ -61,4 +63,20 @@ public class InvoiceServiceImpl implements InvoiceService {
     public void Remove(Long id) {
         invoiceRepository.deleteById(id);
     }
+
+    @Override
+    public List<Invoice> getAllInvoices() {
+        return invoiceRepository.findAll();
+    }
+
+    @Override
+    public Invoice findById(Long id) {
+        return invoiceRepository.getInvoicesById(id);
+    }
+
+    @Override
+    public void saveInvoice(Invoice invoice) {
+        invoiceRepository.save(invoice);
+    }
+
 }

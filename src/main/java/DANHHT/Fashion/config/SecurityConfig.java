@@ -38,11 +38,11 @@ public class SecurityConfig {
         return http
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers( "/css/**", "/js/**","/fonts/**", "/img/**"
-                                ,"/","/register","/error", "/product", "/blog",
-                                "/product/category/{name}", "product/search",
+                                ,"/","/register","/error", "/product", "/contact","/blog",
+                                "/product/category/{name}","/home" ,"product/search",
                                 "product/productDetail/{id}", "/product/page/{pageNo}")
                         .permitAll()
-                        .requestMatchers( "/contact")
+                        .requestMatchers("/admin")
                         .hasAnyAuthority("Admin")
                         .anyRequest().authenticated()
                 )
