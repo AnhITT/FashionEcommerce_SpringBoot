@@ -97,7 +97,7 @@
                 </div>
             <div sec:authorize="isAuthenticated()">
                 <div class="cart-area">
-                    <a th:href="@{/cart/view}" ><img src="/img/core-img/bag.svg" alt=""> <span>0</span></a>
+                    <a th:href="@{/cart/view}" ><img src="/img/core-img/bag.svg" alt=""> <span></span></a>
                 </div>
             </div>
             <div sec:authorize="!isAuthenticated()" class="user-login-info">

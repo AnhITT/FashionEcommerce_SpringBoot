@@ -43,7 +43,7 @@ public class SecurityConfig {
                                 "/product/category/{name}","/home" ,"product/search",
                                 "product/productDetail/{id}", "/product/page/{pageNo}")
                         .permitAll()
-                        .requestMatchers("/admin")
+                        .requestMatchers("/admin/**", "/category/**", "/invoice/**", "/account/**")
                         .hasAnyAuthority("Admin")
                         .anyRequest().authenticated()
                 )
