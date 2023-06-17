@@ -57,31 +57,31 @@
                             <form class="form-horizontal form-label-left" method="post" th:action="@{/admin/product/addproduct}" th:object="${product}" >
 
                                 <div class="field item form-group">
-                                    <label class="col-form-label col-md-3 col-sm-3  label-align">Tên sản phẩm<span class="required">*</span></label>
+                                    <label class="col-form-label col-md-3 col-sm-3  label-align">Name Product<span class="required">*</span></label>
                                     <div class="col-md-6 col-sm-6">
                                         <input class="form-control" th:field="*{nameProduct}" data-validate-length-range="6" data-validate-words="2" name="name" required="required">
                                     </div>
                                 </div>
                                 <div class="field item form-group">
-                                    <label class="col-form-label col-md-3 col-sm-3  label-align">Mô tả<span class="required">*</span></label>
+                                    <label class="col-form-label col-md-3 col-sm-3  label-align">Note<span class="required">*</span></label>
                                     <div class="col-md-6 col-sm-6">
                                         <textarea th:field="*{desProduct}" name="description" style="width: 100%; height: 160px;"></textarea></div>
 
 
                                 </div>
                                 <div class="field item form-group">
-                                    <label class="col-form-label col-md-3 col-sm-3  label-align">Giá sản phẩm<span class="required">*</span></label>
+                                    <label class="col-form-label col-md-3 col-sm-3  label-align">Price Product<span class="required">*</span></label>
                                     <div class="col-md-6 col-sm-6">
                                         <input th:field="*{priceProduct}" class="form-control" name="price" required="required" type="number"></div>
                                 </div>
                                 <div class="field item form-group">
-                                    <label class="col-form-label col-md-3 col-sm-3  label-align">Hình ảnh<span class="required">*</span></label>
+                                    <label class="col-form-label col-md-3 col-sm-3  label-align">Image<span class="required">*</span></label>
                                     <div class="col-md-6 col-sm-6">
                                         <input class="form-control" th:field="*{imgProduct}" data-validate-length-range="6" data-validate-words="2" name="name" required="required">
                                     </div>
                                 </div>
                                 <div class="field item form-group">
-                                    <label class="col-form-label col-md-3 col-sm-3  label-align">Hình ảnh cover<span class="required">*</span></label>
+                                    <label class="col-form-label col-md-3 col-sm-3  label-align">Image Cover<span class="required">*</span></label>
                                     <div class="col-md-6 col-sm-6">
                                         <input class="form-control" th:field="*{imgCoverProduct}" data-validate-length-range="6" data-validate-words="2" name="name"  required="required">
                                     </div>
@@ -89,7 +89,7 @@
 
 -->
                                 <div class="field item form-group">
-                                    <label class="col-form-label col-md-3 col-sm-3  label-align">Danh mục<span class="required">*</span></label>
+                                    <label class="col-form-label col-md-3 col-sm-3  label-align">Category<span class="required">*</span></label>
                                     <div class="col-md-6 col-sm-6">
                                         <select id="category" name="category.id">
                                             <option value="">--Select Category--</option>

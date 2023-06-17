@@ -28,21 +28,23 @@
       <div class="container" style="padding-top:60px;">
         <div class="row d-flex justify-content-center align-items-center">
           <div class="col-md-6 card border rounded-4">
-            <h2 class="text-center">Chi tiết sản phẩm</h2>
+            <h2 class="text-center">Detail Product</h2>
             <hr>
 
             <dl class="row" style="margin-left:120px;">
 
-                <dt class="col-sm-3">Hình ảnh:</dt>
+                <dt class="col-sm-3">Image:</dt>
                 <img th:src="${product.imgProduct}" style="width: 260px;">
               <br/>
-                <dt class="col-sm-3">Tên sản phẩm:</dt>
+                <dt class="col-sm-3">Name Product:</dt>
                 <dd class="col-sm-9" th:text="${product.nameProduct}"></dd>
-                <dt class="col-sm-3">Giá:</dt>
+                <dt class="col-sm-3">Price Product:</dt>
                 <dd class="col-sm-9" th:text="${product.priceProduct} + '$'"></dd>
-                <dt class="col-sm-3">Lượt xem:</dt>
+              <dt class="col-sm-3">Note:</dt>
+                <dd class="col-sm-9" th:text="${product.desProduct}"></dd>
+                <dt class="col-sm-3">View Product:</dt>
                 <dd class="col-sm-9" th:text="${product.viewProduct + ' view'}"></dd>
-                <dt class="col-sm-3">Danh mục:</dt>
+                <dt class="col-sm-3">Category:</dt>
                 <dd class="col-sm-9" th:text="${product.category.name}"></dd>
 
             </dl>

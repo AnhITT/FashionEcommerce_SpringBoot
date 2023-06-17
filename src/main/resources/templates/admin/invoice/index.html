@@ -64,9 +64,9 @@
                   <td th:text="${invoice.id}"></td>
                   <td th:text="${invoice.nameUser}"></td>
                   <td th:text="${invoice.invoiceDate}"></td>
-                  <td th:text="${invoice.typeShipping} + '$'"></td>
+                  <td th:text="${invoice.typeShipping}"></td>
                   <td th:text="${invoice.typePayment}"></td>
-                  <td th:text="${invoice.totalInvoice}"></td>
+                  <td th:text="${invoice.totalInvoice + '$'}"></td>
                   <td th:text="${invoice.status}"></td>
                   <th>
                     <a th:href="@{invoice/detailOrder/{id} (id=${invoice.id})}" class="btn btn-success btn-xs"> View</a>

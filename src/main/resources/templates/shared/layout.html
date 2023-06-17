@@ -85,6 +85,7 @@
                         <ul>
                             <li><a th:href="@{/manageInfo}">Infomartion</a></li>
                             <li><a th:href="@{/manageOrder}">Order</a></li>
+                            <li sec:authorize="hasAnyAuthority('Admin')"><a th:href="@{/admin}">Admin</a></li>
                             <li>
                                 <a href="#" onclick="submitForm()">Logout</a>
 
