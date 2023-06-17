@@ -48,14 +48,28 @@ public class UserServiceImpl implements UserService {
     public List<User> getAllUsers() {
         return userRepository.findAll();
     }
+    @Override
+    public User getUserById(long id){
+        Optional<User> optional = userRepository.findById(id);
+        if(optional.isPresent())
+        {
+            return optional.get();
+        } else {
+            throw new RuntimeException("User not found for id " + id);
+        }
+    }
 
+    @Override
+    public void deleteUserById(long id){
+        this.userRepository.deleteById(id);
+    }
     @Override
     public void saveInfo(User user) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if (authentication.isAuthenticated()) {
             String username = authentication.getName();
             var id = userRepository.getUserIdByUsername(username);
-            var user1 = userRepository.getById(id);
+            User user1 = userRepository.getUsertById(id);
             user1.setFullName(user.getFullName());
             user1.setEmail(user.getEmail());
             user1.setAddress(user.getAddress());

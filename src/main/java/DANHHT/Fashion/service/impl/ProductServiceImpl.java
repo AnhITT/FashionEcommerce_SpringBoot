@@ -3,6 +3,7 @@ package DANHHT.Fashion.service.impl;
 import DANHHT.Fashion.model.Product;
 import DANHHT.Fashion.repository.IProductRepository;
 import DANHHT.Fashion.service.ProductService;
+import jakarta.validation.constraints.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -10,6 +11,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 @Service
@@ -72,5 +74,25 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public Product top1Product() {
         return productRepository.top1Products();
+    }
+    @Override
+    public void deleteProdcutById(long id) {
+        this.productRepository.deleteById(id);
+    }
+    @Override
+    public void saveProduct(Product product) {
+        this.productRepository.save(product);
+    }
+
+    @Override
+    public void updateProduct(@NotNull Product product) {
+        Product productCheck = productRepository.getProductById(product.getIdProduct());
+        Objects.requireNonNull(productCheck).setDesProduct(product.getDesProduct());
+        productCheck.setNameProduct(product.getNameProduct());
+        productCheck.setPriceProduct(product.getPriceProduct());
+        productCheck.setImgProduct(product.getImgProduct());
+        productCheck.setImgCoverProduct(product.getImgCoverProduct());
+        productCheck.setCategory(product.getCategory());
+        productRepository.save(product);
     }
 }

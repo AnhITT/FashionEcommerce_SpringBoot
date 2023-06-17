@@ -1,5 +1,6 @@
 package DANHHT.Fashion.service;
 
+import DANHHT.Fashion.model.Category;
 import DANHHT.Fashion.model.Product;
 import org.springframework.data.domain.Page;
 
@@ -16,5 +17,7 @@ public interface ProductService {
     void UpdateView(Long id);
     List<Product> top10Product();
     Product top1Product();
-
+    void deleteProdcutById(long id);
+    void saveProduct(Product product);
+    void updateProduct(Product product);
 }

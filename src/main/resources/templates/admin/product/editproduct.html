@@ -54,8 +54,13 @@
                             <div class="clearfix"></div>
                         </div>
                         <div class="x_content">
-                            <form class="form-horizontal form-label-left" method="post" th:action="@{/admin/product/addproduct}" th:object="${product}" >
-
+                            <form class="form-horizontal form-label-left" method="post" th:action="@{/admin/product/edit}" th:object="${product}" >
+                                <div class="field item form-group">
+                                    <label class="col-form-label col-md-3 col-sm-3  label-align">Mã sản phẩm<span class="required">*</span></label>
+                                    <div class="col-md-6 col-sm-6">
+                                        <input class="form-control" th:field="*{idProduct}" data-validate-length-range="6" data-validate-words="2" name="name" readonly>
+                                    </div>
+                                </div>
                                 <div class="field item form-group">
                                     <label class="col-form-label col-md-3 col-sm-3  label-align">Tên sản phẩm<span class="required">*</span></label>
                                     <div class="col-md-6 col-sm-6">
@@ -87,13 +92,15 @@
                                     </div>
                                 </div>
 
--->
+                                -->
                                 <div class="field item form-group">
                                     <label class="col-form-label col-md-3 col-sm-3  label-align">Danh mục<span class="required">*</span></label>
                                     <div class="col-md-6 col-sm-6">
                                         <select id="category" name="category.id">
                                             <option value="">--Select Category--</option>
-                                            <option th:each="category : ${categories}" th:value="${category.getId()}" th:text="${category.getName()}"></option>
+                                            <option th:each="category : ${categories}" th:value="${category.getId()}"
+                                                    th:text="${category.getName()}"
+                                                    th:selected="${category.getId() == product.category.getId()}"></option>
                                         </select>
                                     </div>
                                 </div>

@@ -77,9 +77,9 @@
                   <td th:text="${product.priceProduct} + '$'"></td>
                   <td th:text="${product.viewProduct + ' view'}"></td>
                   <td>
-                    <a href="" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> View</a>
-                    <a href="#" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Edit</a>
-                    <a href="#" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete</a>
+                    <a th:href="@{/admin/product/viewproduct/{id}(id=${product.idProduct})}" class="btn btn-primary btn-xs"><i class="fa fa-folder"></i> View</a>
+                    <a th:href="@{/admin/product/edit/{id}(id=${product.idProduct})}" class="btn btn-info btn-xs"><i class="fa fa-pencil"></i> Edit</a>
+                    <a th:href="@{/admin/product/deleteproduct/{id}(id=${product.idProduct})}" class="btn btn-danger btn-xs"><i class="fa fa-trash-o"></i> Delete</a>
                   </td>
                 </tr>
                 </tbody>

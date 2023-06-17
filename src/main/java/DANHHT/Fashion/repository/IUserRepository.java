@@ -1,5 +1,6 @@
 package DANHHT.Fashion.repository;
 
+import DANHHT.Fashion.model.Product;
 import DANHHT.Fashion.model.User;
 import jakarta.transaction.Transactional;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -24,4 +25,6 @@ public interface IUserRepository extends JpaRepository<User, Long> {
     @Query(value = "SELECT r.name FROM role r INNER JOIN user_role ur " +
             "ON r.id = ur.role_id WHERE ur.user_id = ?1", nativeQuery = true)
     String[] getRolesOfUser(Long userId);
+    @Query("SELECT p FROM User p where  p.id =:id")
+    User getUsertById(Long id);
 }
